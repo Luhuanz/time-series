@@ -1,0 +1,13 @@
+project_id,period,range_type,est_yearly_interest_rate,branch_id
+1,365,national,6.78,
+2,300,national,7.88,
+3,200,national,5.47,
+4,180,national,5.23,
+5,180,national,5.89,
+6,180,national,4.89,
+7,60,local,2.45,1
+8,60,local,3.12,2
+9,60,national,3.42,
+10,7,local,0.99,12
+11,7,local,1.04,8
+12,7,national,0.95,
