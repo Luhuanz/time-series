@@ -11,3 +11,15 @@
 时间序列一般可以分为  趋势 +季节性+残差。"Long-term trend-cyclical" 通常被认为是趋势成分的一部分，因为它反映了较长时间尺度上的趋势变化，但也包括一些周期性的变化。
 
 **序列分解模块**  
+
+为了在 long-term 预测上下文中学习复杂的时间模式，我们采用分解的思想 [1, 33]，它可以将序列分为 trend-cyclical 部分和 seasonal 部分。 这两个部分分别反映了该序列的 long-term 发展和 seasonality。
+
+对于未来的序列来说，直接分解是无法实现的，因为未来是未知的。 为了解决这个难题，我们提出了一个序列分解模块作为 Autoformer 的内部操作（图 1），它可以**从预测的中间隐藏变量中逐步提取 long-term 平稳 trend** 。 具体而言，**我们采用 moving average 以平滑周期性波动并突出 long-term trends。** 对于 length-L 的输入序列 $X \in \mathbb{R}^{L \times d}$ 过程为:
+$$
+\begin{aligned}
+& \mathcal{X}_{\mathrm{t}}=\operatorname{Avg} \operatorname{Pool}(\operatorname{Padding}(\mathcal{X})) \\
+& \mathcal{X}_{\mathrm{s}}=\mathcal{X}-\mathcal{X}_{\mathrm{t}}
+\end{aligned}
+$$
+这里 $X_t, X_s \in \mathbb{R}^{L \times d}$ 分别代表 **seasonal 部分和 提取的 trend-cyclical 部分。**我们采用 带有 padding 操作的 AvgPool (・) 进行 moving average ，填充操作用来保持序列长度不变。我们用$X_s, X_t=\operatorname{SeriesDecomp}(X)$
+
