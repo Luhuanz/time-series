@@ -23,3 +23,7 @@ $$
 $$
 这里 $X_t, X_s \in \mathbb{R}^{L \times d}$ 分别代表 **seasonal 部分和 提取的 trend-cyclical 部分。**我们采用 带有 padding 操作的 AvgPool (・) 进行 moving average ，填充操作用来保持序列长度不变。我们用$X_s, X_t=\operatorname{SeriesDecomp}(X)$ 来总结上面的方程，这是一个模型内部模块
 
+**模型输入**
+
+Encoder 部分的输入是过去的 $I$个时间步 $X_{e n} \in \mathbb{R}^{I \times d}$ 作为一种分解架构（图 1），**Autoformer decoder 的输入包含要细化的 seasonal 部分**$X_{\text {des }} \in \mathbb{R}^{\left(\frac{I}{2}+O\right) \times d}$ 和 trend-cyclical 部分 
+
