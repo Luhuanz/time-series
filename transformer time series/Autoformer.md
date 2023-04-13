@@ -9,3 +9,5 @@
 **Encoder 通过序列分解模块（蓝色模块）消除了 long-term trend-cyclical 部分，并专注于 seasonal 模式建模。Decoder 逐步累积从隐藏变量中提取的 trend 部分。 encoder-decoder Auto-Correlation（Decoder 中的中间绿色块）利用来自 encoder 的过去 seasonal 信息。**
 
 时间序列一般可以分为  趋势 +季节性+残差。"Long-term trend-cyclical" 通常被认为是趋势成分的一部分，因为它反映了较长时间尺度上的趋势变化，但也包括一些周期性的变化。
+
+**序列分解模块**  
