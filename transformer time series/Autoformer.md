@@ -33,3 +33,5 @@ $$
 \mathcal{X}_{\mathrm{det}} & =\operatorname{Concat}\left(\mathcal{X}_{\mathrm{ent}}, \mathcal{X}_{\text {Mean }}\right)
 \end{aligned}
 $$
+$X_{e n s}, X_{e n t} \in \mathbb{R}^{\frac{1}{2} \times d}$ 分别表示**$X_{en}$ 的 seasonal 部分和 trend-cyclical 部分；** $X_0, X_{\text {Mean }} \in \mathbb{R}^{O \times d}$
+
