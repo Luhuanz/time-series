@@ -63,3 +63,5 @@ $$
 \mathcal{T}_{\mathrm{de}}^l & =\mathcal{T}_{\mathrm{de}}^{l-1}+\mathcal{W}_{l, 1} * \mathcal{T}_{\mathrm{de}}^{l, 1}+\mathcal{W}_{l, 2} * \mathcal{T}_{\mathrm{de}}^{l, 2}+\mathcal{W}_{l, 3} * \mathcal{T}_{\mathrm{de}}^{l, 3}
 \end{aligned}
 $$
+$\mathcal{X}_{\mathrm{de}}^l=\mathcal{S}_{\mathrm{de}}^{,, 3}, l \in\{1, \cdots, M\}$ 表示第$l$个解码器层的输出;$X_{d e}^0$是$X_{des}$ 的嵌入，用于深度变换 $\mathcal{T}_{\text {de }}^0=\mathcal{X}_{\text {det }}$用于累积。
+
