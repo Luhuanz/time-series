@@ -40,4 +40,15 @@ $X_{e n s}, X_{e n t} \in \mathbb{R}^{\frac{1}{2} \times d}$ 分别表示**$X_{e
 **Encoder**
 
 如图 1 所示，encoder 侧重于 seasonal 部分建模。 encoder 的输出包含过去的 seasonal 信息，将作为交叉（cross）信息帮助 decoder 细化预测结果。 假设我们有 N 个 encoder 层。第$l$个 encoder 的整体方程总结为$X_l^{e n}=E n \operatorname{coder}\left(X_{l-1}^{e n}\right)$
+$$
+\begin{aligned}
+& \mathcal{S}_{\mathrm{en}}^{l, 1},_{-}=\text {SeriesDecomp }\left(\text { Auto-Correlation }\left(\mathcal{X}_{\mathrm{en}}^{l-1}\right)+\mathcal{X}_{\mathrm{en}}^{l-1}\right) \\
+& \mathcal{S}_{\mathrm{en}}^{l, 2},_{-}=\operatorname{SeriesDecomp}\left(\text { FeedForward }\left(\mathcal{S}_{\mathrm{en}}^{l, 1}\right)+\mathcal{S}_{\mathrm{en}}^{l, 1}\right)
+\end{aligned}
+$$
+这里 “_” 是消除的 trend 部分；  
+
+$\mathcal{X}_{\mathrm{en}}^l=\mathcal{S}_{\mathrm{en}}^{l, 2}, l \in\{1, \cdots, N\}$ 表示第$l$个encoder层输出;$\mathcal{S}_{\mathrm{en}}^{l, i}, i \in\{1,2\}$ 表示第$l$层中的第$i$个序列分解模块后的seasonal部分。
+
+
 
