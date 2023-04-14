@@ -63,5 +63,8 @@ $$
 \mathcal{T}_{\mathrm{de}}^l & =\mathcal{T}_{\mathrm{de}}^{l-1}+\mathcal{W}_{l, 1} * \mathcal{T}_{\mathrm{de}}^{l, 1}+\mathcal{W}_{l, 2} * \mathcal{T}_{\mathrm{de}}^{l, 2}+\mathcal{W}_{l, 3} * \mathcal{T}_{\mathrm{de}}^{l, 3}
 \end{aligned}
 $$
-$\mathcal{X}_{\mathrm{de}}^l=\mathcal{S}_{\mathrm{de}}^{,, 3}, l \in\{1, \cdots, M\}$ 表示第$l$个解码器层的输出;$X_{d e}^0$是$X_{des}$ 的嵌入，用于深度变换 $\mathcal{T}_{\text {de }}^0=\mathcal{X}_{\text {det }}$用于累积。
+$\mathcal{X}_{\mathrm{de}}^l=\mathcal{S}_{\mathrm{de}}^{,, 3}, l \in\{1, \cdots, M\}$ 表示第$l$个解码器层的输出;$X_{d e}^0$是$X_{des}$ 的嵌入，用于深度变换 $\mathcal{T}_{\text {de }}^0=\mathcal{X}_{\text {det }}$用于累积。 $\mathcal{S}_{\mathrm{de}}^{l, i}, \mathcal{T}_{\mathrm{de}}^{l, i}, i \in\{1,2,3\}$  分别表示第$l$层中第$i$个序列分解模块后seasonal 分量和 trend-cyclical 分量。 $\mathcal{W}_{l, i}, i \in\{1,2,3\}$ 表示第$i$ 个提取的trend $\tau_{d e}^{l, i}$的投影。
 
+最终的预测是两个细化的分解分量之和，为 $\mathcal{W}_{\mathcal{S}} * \mathcal{X}_{\mathrm{de}}^M+\mathcal{T}_{\mathrm{de}}^M$ 其中$w_s$ 是用来将深度变换的 seasonal 分量 $X_{d e}^M$ 投影到目标维度。
+
+![image-20230415074018256](Autoformer.assets/image-20230415074018256.png)
