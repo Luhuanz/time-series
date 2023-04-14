@@ -38,3 +38,6 @@ $X_{e n s}, X_{e n t} \in \mathbb{R}^{\frac{1}{2} \times d}$ 分别表示**$X_{e
 分别表示被 0 填充的占位符和被$X_{en}$的 mean 填充的占位符。
 
 **Encoder**
+
+如图 1 所示，encoder 侧重于 seasonal 部分建模。 encoder 的输出包含过去的 seasonal 信息，将作为交叉（cross）信息帮助 decoder 细化预测结果。 假设我们有 N 个 encoder 层。第$l$个 encoder 的整体方程总结为$X_l^{e n}=E n \operatorname{coder}\left(X_{l-1}^{e n}\right)$
+
