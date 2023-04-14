@@ -50,5 +50,16 @@ $$
 
 $\mathcal{X}_{\mathrm{en}}^l=\mathcal{S}_{\mathrm{en}}^{l, 2}, l \in\{1, \cdots, N\}$ 表示第$l$个encoder层输出;$\mathcal{S}_{\mathrm{en}}^{l, i}, i \in\{1,2\}$ 表示第$l$层中的第$i$个序列分解模块后的seasonal部分。
 
+**Decoder**
 
+trend-cyclical 部分的累积结构和 seasonal 部分的堆叠 Auto-Correlation 机制 。 每个 Decoder 层包含 **inner Auto-Correlation** 和 **encoder-decoder Auto-Correlation**，它们可以分别 细化预测和利用过去的 seasonal 信息。该模型在 Decoder 期间从中间隐藏变量中提取潜在 trend，从而允许 Autoformer 逐步细化 trend 预测并消除干扰信息，以便在 Auto-Correlation 中发现基于周期的依赖关系。 假设有 M 个 decoder 层。  **使用来自 encoder 的隐变量 **$X_{e n}^N$ 第$l$ 个解码器层的方程可以概括为
 
+$X_l^{d e}=\operatorname{Decoder}\left(X_{l-1}^{d e}, X_{e n}^N\right)$ Decoder 可以如下公式化： 
+$$
+\begin{aligned}
+\mathcal{S}_{\mathrm{de}}^{l, 1}, \mathcal{T}_{\mathrm{de}}^{l, 1} & =\operatorname{SeriesDecomp}\left(\text { Auto-Correlation }\left(\mathcal{X}_{\mathrm{de}}^{l-1}\right)+\mathcal{X}_{\mathrm{de}}^{l-1}\right) \\
+\mathcal{S}_{\mathrm{de}}^{l, 2}, \mathcal{T}_{\mathrm{de}}^{l, 2} & =\operatorname{SeriesDecomp}\left(\text { Auto-Correlation }\left(\mathcal{S}_{\mathrm{de}}^{l, 1}, \mathcal{X}_{\mathrm{en}}^N\right)+\mathcal{S}_{\mathrm{de}}^{l, 1}\right) \\
+\mathcal{S}_{\mathrm{de}}^{l, 3}, \mathcal{T}_{\mathrm{de}}^{l, 3} & =\operatorname{SeriesDecomp}\left(\text { FeedForward }\left(\mathcal{S}_{\mathrm{de}}^{l, 2}\right)+\mathcal{S}_{\mathrm{de}}^{l, 2}\right) \\
+\mathcal{T}_{\mathrm{de}}^l & =\mathcal{T}_{\mathrm{de}}^{l-1}+\mathcal{W}_{l, 1} * \mathcal{T}_{\mathrm{de}}^{l, 1}+\mathcal{W}_{l, 2} * \mathcal{T}_{\mathrm{de}}^{l, 2}+\mathcal{W}_{l, 3} * \mathcal{T}_{\mathrm{de}}^{l, 3}
+\end{aligned}
+$$
