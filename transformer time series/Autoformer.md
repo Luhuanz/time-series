@@ -25,5 +25,11 @@ $$
 
 **模型输入**
 
-Encoder 部分的输入是过去的 $I$个时间步 $X_{e n} \in \mathbb{R}^{I \times d}$ 作为一种分解架构（图 1），**Autoformer decoder 的输入包含要细化的 seasonal 部分**$X_{\text {des }} \in \mathbb{R}^{\left(\frac{I}{2}+O\right) \times d}$ 和 trend-cyclical 部分 
-
+Encoder 部分的输入是过去的 $I$个时间步 $X_{e n} \in \mathbb{R}^{I \times d}$ 作为一种分解架构（图 1），**Autoformer decoder 的输入包含要细化的 seasonal 部分**$X_{\text {des }} \in \mathbb{R}^{\left(\frac{I}{2}+O\right) \times d}$ 和 trend-cyclical 部分 $X_{\text {det }} \in \mathbb{R}^{\left(\frac{I}{2}+O\right) \times d}$。每个初始化由两部分组成：由 encoder 的输入$X_{en}$ 的后半部分分解而成，用 length $\frac{I}{2}$ 以提供最近的信息，长度为 O 的占位符由标量填充。 其公式如下:
+$$
+\begin{aligned}
+\mathcal{X}_{\mathrm{ens}}, \mathcal{X}_{\mathrm{ent}} & =\operatorname{Series} \operatorname{Decomp}\left(\mathcal{X}_{\mathrm{en} \frac{I}{2}: I}\right) \\
+\mathcal{X}_{\mathrm{des}} & =\operatorname{Concat}\left(\mathcal{X}_{\mathrm{ens}}, \mathcal{X}_0\right) \\
+\mathcal{X}_{\mathrm{det}} & =\operatorname{Concat}\left(\mathcal{X}_{\mathrm{ent}}, \mathcal{X}_{\text {Mean }}\right)
+\end{aligned}
+$$
