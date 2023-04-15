@@ -68,3 +68,5 @@ $\mathcal{X}_{\mathrm{de}}^l=\mathcal{S}_{\mathrm{de}}^{,, 3}, l \in\{1, \cdots,
 最终的预测是两个细化的分解分量之和，为 $\mathcal{W}_{\mathcal{S}} * \mathcal{X}_{\mathrm{de}}^M+\mathcal{T}_{\mathrm{de}}^M$ 其中$w_s$ 是用来将深度变换的 seasonal 分量 $X_{d e}^M$ 投影到目标维度。
 
 ![image-20230415074018256](Autoformer.assets/image-20230415074018256.png)
+
+![img](Autoformer.assets/18774db8d9d34053a6bd8492cded6fcf.png)
