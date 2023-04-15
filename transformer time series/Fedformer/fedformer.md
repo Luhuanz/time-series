@@ -119,7 +119,11 @@ $$
 Notation 
 
 - $\mathcal{F}$ : Fourier  Transform
+
 -  $\mathcal{F}^{-1}$ : Inverse Fourier  Transform
+
 - sequence of real  numbers $x_n$ (TIME domain )
 
- 
+  -  where $n=1,2,\dots N $
+
+  DFT: $X_l=\sum_{n=0}^{N-1} x_n e^{-i \omega l n}$
