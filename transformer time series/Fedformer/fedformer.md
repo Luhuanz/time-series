@@ -40,4 +40,17 @@
 
 - 从d 个谱域成分中随机选取 s 个 (s<d)，论文通过理论证明 $A^{\prime} \in R^{m \times s}$ 可以保留大部分 A 的信息
 
-Notation
+## Notation
+
+-  input length=$I$
+
+- output length=$O$
+
+- hidden state of TS=$D$
+
+- input
+
+  -  of Encoder :$I*D$ matrix
+  - of Decoder :($I/2+O$) * $D$ matrix
+
+  
