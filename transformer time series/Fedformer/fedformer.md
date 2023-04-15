@@ -114,4 +114,9 @@ $$
 
 ### Fourier Enhanced  Structure
 
-DFT s 
+**DFT (Discrete Fourier  Transform)**
+
+Notation 
+
+- $\mathcal{F}$ : Four
+
