@@ -119,4 +119,6 @@ $$
 Notation 
 
 - $\mathcal{F}$ : Fourier  Transform
+-  $\mathcal{F}^{-1}$ : Inverse Fourier  Transform
+- sequence of real  numbers $x_n$ (TIME domain )
 
