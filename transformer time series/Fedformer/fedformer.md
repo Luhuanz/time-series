@@ -119,11 +119,25 @@ $$
 Notation 
 
 - $\mathcal{F}$ : Fourier  Transform
-
 -  $\mathcal{F}^{-1}$ : Inverse Fourier  Transform
-
 - sequence of real  numbers $x_n$ (TIME domain )
-
   -  where $n=1,2,\dots N $
 
-  DFT: $X_l=\sum_{n=0}^{N-1} x_n e^{-i \omega l n}$
+DFT: $X_l=\sum_{n=0}^{N-1} x_n e^{-i \omega l n}$
+
+(where $l=1,2\dots L$ )
+
+- $i$ : imaginary unit
+- $X_l$ : sequence of complex  numbers  in  frequency domain
+
+iDFT:   $x_n=\sum_{l=0}^{L-1} X_l e^{i \omega l n}$
+
+Complexity:
+
+- DFT:O($N^2$)
+
+- FFT: O($NlogN$)
+
+- random subset of  Fourier basis: $O(N)$
+
+  (+mode index before DFT and )
