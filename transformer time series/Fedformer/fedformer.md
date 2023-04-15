@@ -61,7 +61,9 @@
 - (2) FEA ( Frequency Enhanced Attention )
 - (3) MOEDcomp ( Mixture Of Experts Decomposition block )
 
-### encoder
+### 整体结构
+
+#### encoder
 
 ![figure2](fedformer.assets/img300.png)
 
@@ -82,7 +84,7 @@ $$
 $$
 其中 $\mathcal{S}_{\mathrm{en}}^{l, i}, i \in\{1,2\}$ :seasonal component after the $i-th$  decomposition block in the $l-th$ layer.  (follow autoformer )
 
-### Decoder
+#### Decoder
 
  ![image-20230415102804895](fedformer.assets/image-20230415102804895.png)
 
@@ -105,4 +107,8 @@ $$
 
 -  $\mathcal{S}_{\mathrm{de}}^{l, i}, \mathcal{T}_{\mathrm{de}}^{l, i}, i \in\{1,2,3\}$ : represent the seasonal & trend component, after the $i-th$ decomposition block in the $l-th$ layer.
 
-#####  Final prediction  
+#####  Final prediction     follow  autoformer 
+
+- sum of 2 refined decomposed components :   $\mathcal{W}_{\mathcal{S}} \cdot \mathcal{X}_{\mathrm{de}}^M+\mathcal{T}_{\mathrm{de}}^M$
+  - $\mathcal{W}_{\mathcal{S}}$ :project seasonal component $\mathcal{X}_{\mathrm{de}}^M$ to the target dim
+
