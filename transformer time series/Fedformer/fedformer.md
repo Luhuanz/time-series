@@ -54,3 +54,55 @@
   - of Decoder :($I/2+O$) * $D$ matrix
 
   
+
+## FEDformer Structure
+
+-  (1)  FED ( Frequency Enhanced Block )
+- (2) FEA ( Frequency Enhanced Attention )
+- (3) MOEDcomp ( Mixture Of Experts Decomposition block )
+
+### encoder
+
+![figure2](fedformer.assets/img300.png)
+
+**Encoder : multi-layer structure** :
+
+(layer index:   $l \in\{1, \cdots, N\}$)
+
+- $\mathcal{X}_{\mathrm{en}}^0 \in \mathbb{R}^{I \times D}$ : embedded historical TS  follow autofromer 
+- $\mathcal{X}_{\text {en }}^l=\operatorname{Encoder}\left(\mathcal{X}_{\text {en }}^{l-1}\right)$
+
+**Encoder details **:
+$$
+\begin{aligned}
+\mathcal{S}_{\mathrm{en},-}^{l, 1} & =\operatorname{MOEDecomp}\left(\operatorname{FEB}\left(\mathcal{X}_{\mathrm{en}}^{l-1}\right)+\mathcal{X}_{\mathrm{en}}^{l-1}\right) \\
+\mathcal{S}_{\mathrm{en}}^{l, 2} & =\operatorname{MOEDecomp}\left(\text { FeedForward }\left(\mathcal{S}_{\mathrm{en}}^{l, 1}\right)+\mathcal{S}_{\mathrm{en}}^{l, 1}\right) \\
+\mathcal{X}_{\mathrm{en}}^l & =\mathcal{S}_{\mathrm{en}}^{l, 2}
+\end{aligned}
+$$
+其中 $\mathcal{S}_{\mathrm{en}}^{l, i}, i \in\{1,2\}$ :seasonal component after the $i-th$  decomposition block in the $l-th$ layer.  (follow autoformer )
+
+### Decoder
+
+ ![image-20230415102804895](fedformer.assets/image-20230415102804895.png)
+
+**Decoder : multi-layer structure**
+
+(layer index :$l \in\{1, \cdots, M\}$)
+
+- $\mathcal{X}_{\mathrm{de}}^l, \mathcal{T}_{\mathrm{de}}^l=\operatorname{Decoder}\left(\mathcal{X}_{\mathrm{de}}^{l-1}, \mathcal{T}_{\mathrm{de}}^{l-1}\right)$
+
+**Decoder details:**
+$$
+\begin{aligned}
+\mathcal{S}_{\mathrm{de}}^{l, 1}, \mathcal{T}_{\mathrm{de}}^{l, 1} & =\operatorname{MOEDecomp}\left(\operatorname{FEB}\left(\mathcal{X}_{\mathrm{de}}^{l-1}\right)+\mathcal{X}_{\mathrm{de}}^{l-1}\right) \\
+\mathcal{S}_{\mathrm{de}}^{l, 2}, \mathcal{T}_{\mathrm{de}}^{l, 2} & =\operatorname{MOEDecomp}\left(\operatorname{FEA}\left(\mathcal{S}_{\mathrm{de}}^{l, 1}, \mathcal{X}_{\mathrm{en}}^N\right)+\mathcal{S}_{\mathrm{de}}^{l, 1}\right) \\
+\mathcal{S}_{\mathrm{de}}^{l, 3}, \mathcal{T}_{\mathrm{de}}^{l, 3} & =\operatorname{MOEDecomp}\left(\text { FeedForward }\left(\mathcal{S}_{\mathrm{de}}^{l, 2}\right)+\mathcal{S}_{\mathrm{de}}^{l, 2}\right) \\
+\mathcal{X}_{\mathrm{de}}^l & =\mathcal{S}_{\mathrm{de}}^{l, 3} \\
+\mathcal{T}_{\mathrm{de}}^l & =\mathcal{T}_{\mathrm{de}}^{l-1}+\mathcal{W}_{l, 1} \cdot \mathcal{T}_{\mathrm{de}}^{l, 1}+\mathcal{W}_{l, 2} \cdot \mathcal{T}_{\mathrm{de}}^{l, 2}+\mathcal{W}_{l, 3} \cdot \mathcal{T}_{\mathrm{de}}^{l, 3}
+\end{aligned}
+$$
+
+-  $\mathcal{S}_{\mathrm{de}}^{l, i}, \mathcal{T}_{\mathrm{de}}^{l, i}, i \in\{1,2,3\}$ : represent the seasonal & trend component, after the $i-th$ decomposition block in the $l-th$ layer.
+
+#####  Final prediction  
