@@ -112,3 +112,6 @@ $$
 - sum of 2 refined decomposed components :   $\mathcal{W}_{\mathcal{S}} \cdot \mathcal{X}_{\mathrm{de}}^M+\mathcal{T}_{\mathrm{de}}^M$
   - $\mathcal{W}_{\mathcal{S}}$ :project seasonal component $\mathcal{X}_{\mathrm{de}}^M$ to the target dim
 
+### Fourier Enhanced  Structure
+
+DFT s 
