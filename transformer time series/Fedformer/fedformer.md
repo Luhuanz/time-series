@@ -114,7 +114,7 @@ $$
 
 ### Fourier Enhanced  Structure
 
-**DFT (Discrete Fourier  Transform)**
+(a) **DFT (Discrete Fourier  Transform)**
 
 Notation 
 
@@ -140,4 +140,15 @@ Complexity:
 
 - random subset of  Fourier basis: $O(N)$
 
-  (+mode index before DFT and )
+  (+mode index before DFT and reverse  DFT operations)
+
+(b)  **FEB-f ( Frequency Enhanced Block** ( with Fourier Transform )  
+
+both used in **Encoder & Decoder**
+
+![image-20230415162928961](fedformer.assets/image-20230415162928961.png)
+
+Process
+
+- step1) linear projected :$q=x.w$
+  - where $\boldsymbol{w} \in \mathbb{R}^{D \times D}$
