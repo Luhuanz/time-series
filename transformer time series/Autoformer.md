@@ -70,3 +70,5 @@ $\mathcal{X}_{\mathrm{de}}^l=\mathcal{S}_{\mathrm{de}}^{,, 3}, l \in\{1, \cdots,
 ![image-20230415074018256](Autoformer.assets/image-20230415074018256.png)
 
 ![img](Autoformer.assets/18774db8d9d34053a6bd8492cded6fcf.png)
+
+![image-20230415082713730](Autoformer.assets/image-20230415082713730.png)
