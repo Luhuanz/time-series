@@ -118,5 +118,5 @@ $$
 
 Notation 
 
-- $\mathcal{F}$ : Four
+- $\mathcal{F}$ : Fourier  Transform
 
