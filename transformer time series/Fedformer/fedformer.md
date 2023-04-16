@@ -151,4 +151,4 @@ both used in **Encoder & Decoder**
 Process
 
 - step1) linear projected :$q=x.w$
-  - where $\boldsymbol{w} \in \mathbb{R}^{D \times D}$
+  - where $\boldsymbol{w} \in \mathbb{R}^{D \times D}$  
